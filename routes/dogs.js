@@ -41,7 +41,6 @@ router.get("/sortedlist", async(req, res) => {
 
 });
 
-
 router.post("/addPuppy", async (req, res) => {
   dbConnect();
   let Pup = new PuppyShcema(req.body)
@@ -63,6 +62,14 @@ router.get("/datewise/:date", async(req, res)=>{
   const allPups = await puppsCollection.find({}).toArray();
   res.send(allPups)
 
+})
+
+router.get("/totalPups", (req, res)=>{
+  dbConnect();
+  let data = Puppys.find({}, (err, result)=>{
+    if(err) throw err;
+    res.send(result);
+  })
 })
 
 router.get("/:pupname", (req, res)=>{

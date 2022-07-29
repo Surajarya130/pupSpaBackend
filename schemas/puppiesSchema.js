@@ -1,6 +1,6 @@
 let mongoose = require("mongoose");
 
-let puppySchema = mongoose.Schema({
+let puppiesSchema = mongoose.Schema({
     Name: String,
     Age : Number,
     Gender: String,
@@ -18,4 +18,4 @@ let puppySchema = mongoose.Schema({
     timestamps: true
 })
 
-module.exports = mongoose.model("puppiesdetail", puppySchema)
+module.exports = mongoose.model("puppiesdetail", puppiesSchema)
