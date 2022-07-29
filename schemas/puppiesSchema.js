@@ -4,7 +4,7 @@ let puppySchema = mongoose.Schema({
     Name: String,
     Age : Number,
     Gender: String,
-    Ownder: String,
+    Owner: String,
     Address: String,
     OutStatus: Boolean,
     ServiceType: String,

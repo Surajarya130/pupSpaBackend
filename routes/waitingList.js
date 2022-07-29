@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const dbConnect = require("../mongodb")
-const wLSchema = require("../schemas/waitListSchema.js")
+const PuppyShcema = require("../schemas/PuppyShcema")
 
 router.post("/:pupName", async(req, res)=>{
     dbConnect();
