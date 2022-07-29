@@ -5,7 +5,6 @@ const EventEmitter = require("events")
 const app = express();
 const port = process.env.PORT || 3000;
 let dogsRouter = require("./routes/dogs")
-let waitinglist = require("./routes/waitingList")
 let cors = require("cors")
 let dbConnect = require("./mongodb.js");
 const natDbCon = require('./monoDbNative');
@@ -21,12 +20,8 @@ app.get("/", async(req, res)=>{
     res.send("Worked home page")
 })
 
-
-
-
-// Defining the routes of dogs
+// Defining the route of pups page
 app.use('/dogs', dogsRouter)
-app.use("/waitinglist", waitinglist)
 
 app.listen(port, ()=>{
     console.log(`Listening on port ${port}`)

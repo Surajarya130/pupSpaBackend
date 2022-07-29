@@ -7,7 +7,7 @@ const dbConnect = require("../mongodb.js");
 const natDbCon = require('../monoDbNative.js');
 
 
-
+// Checkout dog serviced pups on current date
 router.patch("/checkout/:dogName", (req, res) => {
   dbConnect();
   let checkedPup = PuppyShcema.findOneAndUpdate(
@@ -31,6 +31,7 @@ router.patch("/checkout/:dogName", (req, res) => {
 });
 
 
+// Sorting the pups list in descending order
 router.get("/sortedlist", async(req, res) => {
   let data = Puppys.find({})
     .sort({ createdAt: -1 })
@@ -41,6 +42,8 @@ router.get("/sortedlist", async(req, res) => {
 
 });
 
+
+// Adding a pup api
 router.post("/addPuppy", async (req, res) => {
   dbConnect();
   let Pup = new PuppyShcema(req.body)
@@ -56,7 +59,7 @@ router.post("/addPuppy", async (req, res) => {
 
 });
 
-
+// To fetch datewise collection
 router.get("/datewise/:date", async(req, res)=>{
   const puppsCollection = await natDbCon(req.params.date);
   const allPups = await puppsCollection.find({}).toArray();
@@ -64,6 +67,7 @@ router.get("/datewise/:date", async(req, res)=>{
 
 })
 
+// No of total pups registered till date 
 router.get("/totalPups", (req, res)=>{
   dbConnect();
   let data = Puppys.find({}, (err, result)=>{
@@ -72,6 +76,7 @@ router.get("/totalPups", (req, res)=>{
   })
 })
 
+// Search by Puppy Name from main db
 router.get("/:pupname", (req, res)=>{
   dbConnect();
   let data = Puppys.find({Name: req.params.pupname}, (err, result)=>{
@@ -80,7 +85,7 @@ router.get("/:pupname", (req, res)=>{
   })
 })
 
-
+// Get current pups which have not been served off
 router.get("/", (req, res) => {
   dbConnect();
   let allPups = PuppyShcema.find({OutStatus: {$ne: true}}, (err, puppyList) => {
