@@ -67,6 +67,16 @@ router.get("/datewise/:date", async(req, res)=>{
 
 })
 
+router.get("/livesearch/:liveupname", async(req, res)=>{
+  const db = await natDbCon("puppiesdetails");
+  const dataByName = await db.find({ Name: {$regex: req.params.liveupname, $options: 'i'}}).toArray();
+  if (dataByName.length === 0) {
+    return res.send([]);
+  } else {
+    return res.send(dataByName);
+  }
+})
+
 // No of total pups registered till date 
 router.get("/totalPups", (req, res)=>{
   dbConnect();
