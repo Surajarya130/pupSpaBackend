@@ -67,6 +67,8 @@ router.get("/datewise/:date", async(req, res)=>{
 
 })
 
+
+// Live search by name router
 router.get("/livesearch/:liveupname", async(req, res)=>{
   const db = await natDbCon("puppiesdetails");
   const dataByName = await db.find({ Name: {$regex: req.params.liveupname, $options: 'i'}}).toArray();
